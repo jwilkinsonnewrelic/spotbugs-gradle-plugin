@@ -29,26 +29,26 @@ package com.github.spotbugs.snom;
  * &nbsp;&nbsp;&nbsp;&nbsp;effort = 'max'<br>
  * }</code></div>
  *
- * <p>See also <a href="https://spotbugs.readthedocs.io/en/stable/effort.html">SpotBugs Manual</a>.</p>
+ * <p>See also <a href="https://spotbugs.readthedocs.io/en/stable/effort.html">SpotBugs Manual</a>.
  */
-enum Effort {
-    /**
-     * The effort level to minimize the computation cost. SpotBugs will try to conserve space at the
-     * expense of precision.
-     */
-    MIN,
-    /** The effort level to reduce the computation cost. */
-    LESS,
-    /** The default level that provides the same feature with {@link #MORE}. */
-    DEFAULT,
-    /**
-     * The effort level that uses more computation cost. SpotBugs will try to detect more problems by
-     * Interprocedural Analysis and Null Pointer Analysis.
-     */
-    MORE,
-    /**
-     * The effort level that maximize the computation cost. SpotBugs will run Interprocedural Analysis
-     * of Referenced Classes.
-     */
-    MAX
+public enum Effort {
+  /**
+   * The effort level to minimize the computation cost. SpotBugs will try to conserve space at the
+   * expense of precision.
+   */
+  MIN,
+  /** The effort level to reduce the computation cost. */
+  LESS,
+  /** The default level that provides the same feature with {@link #MORE}. */
+  DEFAULT,
+  /**
+   * The effort level that uses more computation cost. SpotBugs will try to detect more problems by
+   * Interprocedural Analysis and Null Pointer Analysis.
+   */
+  MORE,
+  /**
+   * The effort level that maximize the computation cost. SpotBugs will run Interprocedural Analysis
+   * of Referenced Classes.
+   */
+  MAX
 }

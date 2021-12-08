@@ -33,38 +33,38 @@ import org.gradle.api.tasks.Internal;
  * &nbsp;&nbsp;&nbsp;&nbsp;reportLevel = 'high'<br>
  * }</code></div>
  *
- * <p>See also <a href="https://spotbugs.readthedocs.io/en/stable/running.html">SpotBugs Manual</a>.</p>
+ * <p>See also <a href="https://spotbugs.readthedocs.io/en/stable/running.html">SpotBugs Manual</a>.
  */
-enum Confidence {
-    /** The report level to report all detected bugs in the report. */
-    LOW {
-        @Override
-        Optional<String> toCommandLineOption() {
-            return Optional.of("-low");
-        }
-    },
-    /** The report level to report medium and high priority detected bugs in the report. */
-    MEDIUM {
-        @Override
-        Optional<String> toCommandLineOption() {
-            return Optional.of("-medium");
-        }
-    },
-    /** The default level that provides the same feature with {@link #MEDIUM}. */
-    DEFAULT {
-        @Override
-        Optional<String> toCommandLineOption() {
-            return Optional.empty();
-        }
-    },
-    /** The report level to report high priority detected bugs in the report. */
-    HIGH {
-        @Override
-        Optional<String> toCommandLineOption() {
-            return Optional.of("-high");
-        }
+public enum Confidence {
+  /** The report level to report all detected bugs in the report. */
+  LOW {
+    @Override
+    public Optional<String> toCommandLineOption() {
+      return Optional.of("-low");
     }
+  },
+  /** The report level to report medium and high priority detected bugs in the report. */
+  MEDIUM {
+    @Override
+    public Optional<String> toCommandLineOption() {
+      return Optional.of("-medium");
+    }
+  },
+  /** The default level that provides the same feature with {@link #MEDIUM}. */
+  DEFAULT {
+    @Override
+    public Optional<String> toCommandLineOption() {
+      return Optional.empty();
+    }
+  },
+  /** The report level to report high priority detected bugs in the report. */
+  HIGH {
+    @Override
+    public Optional<String> toCommandLineOption() {
+      return Optional.of("-high");
+    }
+  };
 
-    @Internal("This is internally used property so no need to refer to judge out-of-date or not.")
-    abstract @Nonnull Optional<String> toCommandLineOption()
+  @Internal("This is internally used property so no need to refer to judge out-of-date or not.")
+  public abstract @Nonnull Optional<String> toCommandLineOption();
 }
