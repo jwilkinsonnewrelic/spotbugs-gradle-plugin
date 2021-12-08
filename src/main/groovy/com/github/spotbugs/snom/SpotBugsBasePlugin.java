@@ -22,7 +22,9 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencySet;
+import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.plugins.ReportingBasePlugin;
+import org.gradle.api.reporting.ReportingExtension;
 import org.gradle.util.GradleVersion;
 
 public class SpotBugsBasePlugin implements Plugin<Project> {
@@ -61,10 +63,26 @@ public class SpotBugsBasePlugin implements Plugin<Project> {
   }
 
   private SpotBugsExtension createExtension(Project project) {
-    return project
-        .getExtensions()
-        .create(
-            SpotBugsPlugin.EXTENSION_NAME, SpotBugsExtension.class, project, project.getObjects());
+    SpotBugsExtension extension =
+        project.getExtensions().create(SpotBugsPlugin.EXTENSION_NAME, SpotBugsExtension.class);
+
+    extension.getIgnoreFailures().convention(false);
+    extension.getShowStackTraces().convention(false);
+    extension.getProjectName().convention(project.provider(() -> project.getName()));
+    extension.getRelease().convention(project.provider(() -> project.getVersion().toString()));
+
+    // ReportingBasePlugin should be applied before we create this SpotBugsExtension instance
+    DirectoryProperty baseReportsDir =
+        project.getExtensions().getByType(ReportingExtension.class).getBaseDirectory();
+    extension
+        .getReportsDir()
+        .convention(
+            baseReportsDir.map(
+                directory -> directory.dir(SpotBugsExtension.DEFAULT_REPORTS_DIR_NAME)));
+    extension.getUseAuxclasspathFile().convention(true);
+    extension.getUseJavaToolchains().convention(false);
+
+    return extension;
   }
 
   private void createConfiguration(Project project, SpotBugsExtension extension) {
