@@ -48,7 +48,7 @@ public class SpotBugsRunnerForJavaExec extends SpotBugsRunner {
       task.getProject().javaexec(configureJavaExec(task)).rethrowFailure().assertNormalExitValue();
     } catch (ExecException e) {
       if (task.getIgnoreFailures()) {
-        log.warn("SpotBugs reported failures", task.getShowStackTraces() ? e : null);
+        log.warn("SpotBugs reported failures", task.getShowStackTraces().get() ? e : null);
       } else {
         String errorMessage = "Verification failed: SpotBugs execution thrown exception.";
         List<String> reportPaths =

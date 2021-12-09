@@ -118,7 +118,7 @@ public class SpotBugsTaskFactory {
                                   variant.getJavaCompileProvider().get();
                               spotbugsTask.setSourceDirs(javaCompile.getSource());
                               spotbugsTask.setClassDirs(
-                                  project.files(javaCompile.getDestinationDir()));
+                                  javaCompile.getDestinationDirectory().getAsFileTree());
                               spotbugsTask.setAuxClassPaths(javaCompile.getClasspath());
                               spotbugsTask.dependsOn(javaCompile);
                             });

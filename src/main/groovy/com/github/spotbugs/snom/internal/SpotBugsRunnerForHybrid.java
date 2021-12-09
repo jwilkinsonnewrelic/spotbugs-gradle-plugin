@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
  * @see <a href="https://github.com/spotbugs/spotbugs-gradle-plugin/issues/416">The related GitHub
  *     issue</a>
  */
-class SpotBugsRunnerForHybrid extends SpotBugsRunner {
+public class SpotBugsRunnerForHybrid extends SpotBugsRunner {
   private final WorkerExecutor workerExecutor;
   private final Property<JavaLauncher> javaLauncher;
 
